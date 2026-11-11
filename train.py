@@ -128,6 +128,7 @@ def main():
     plt.tight_layout()
     plt.savefig("loss_curve.png", dpi=150)
     plt.close()
+    
 
     # picture 2: predictions on unseen digits
     fig, axes = plt.subplots(3, 4, figsize=(7, 5.5))
@@ -150,6 +151,7 @@ def main():
     plt.title("confusion matrix")
     plt.savefig("confusion_matrix.png", dpi=150)
     plt.close()
+    np.savez("model.npz", W1=W1, b1=b1, W2=W2, b2=b2)
 
 
 if __name__ == "__main__":

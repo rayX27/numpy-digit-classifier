@@ -60,3 +60,15 @@ python experiments.py        # runs the experiments
 - `experiments.py`: the learning rate, hidden size, epochs, and ReLU experiments
 - `experiments.md`: experiment tables and explanations
 - `steps/`: the step-by-step build scripts
+
+
+
+## Looking inside the network
+
+![Probabilities for correct and wrong predictions](probabilities.png)
+
+The network's confidence for six test digits (the green bar marks the true digit). It is nearly certain on easy digits. Its mistakes are instructive: a true 3 predicted as 5 split the probability almost evenly (roughly 44% vs 42%), while a true 7 was predicted as 4 with roughly 87% confidence, so the network can be confidently wrong.
+
+![Hidden neurons](hidden_neurons.png)
+
+Each square shows the 64 input weights of one hidden neuron as an 8x8 image (red excites, blue inhibits). In this small network the weights do not form clean stroke detectors: most neurons look diffuse, and a few (for example neurons 19, 27 and 28) show more localized patterns. The knowledge appears to be distributed across neurons.

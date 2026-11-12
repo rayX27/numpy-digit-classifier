@@ -1,23 +1,20 @@
+from dataclasses import dataclass, asdict
 import numpy as np
-from dataclasses import dataclass
 
-@dataclass
+
+@dataclass(frozen=True)
 class Config:
     seed: int = 42
-    learning_rate: float = 0.01
+    learning_rate: float = 0.01   # placeholder until tuned in Phase 3
     batch_size: int = 128
-    epochs: int = 10
+    epochs: int = 10              # placeholder until profiling in Phase 2
     hidden_sizes: tuple = (256, 128)
-    
-    def __post_init__(self):
-        # Spawn 4 independent RNG streams from the master seed
-        sq = np.random.SeedSequence(self.seed)
-        streams = sq.spawn(4)
-        
-        self.rng_init = np.random.default_rng(streams[0])
-        self.rng_data = np.random.default_rng(streams[1])
-        self.rng_dropout = np.random.default_rng(streams[2])
-        self.rng_aug = np.random.default_rng(streams[3])
 
-# Global configuration instance
-config = Config()
+    def rngs(self):
+        """Fresh independent RNG streams. Call once per run."""
+        names = ("init", "data", "dropout", "aug")
+        children = np.random.SeedSequence(self.seed).spawn(len(names))
+        return {n: np.random.default_rng(s) for n, s in zip(names, children)}
+
+    def to_dict(self):
+        return asdict(self)

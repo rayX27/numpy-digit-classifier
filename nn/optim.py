@@ -55,3 +55,20 @@ class Adam(Optimizer):
             v *= self.beta2
             v += (1.0 - self.beta2) * g * g
             params[name] -= self.lr * (m / c1) / (np.sqrt(v / c2) + self.eps)
+
+
+
+class AdamW(Adam):
+    """Adam with decoupled weight decay. Only weight matrices are decayed (ndim >= 2);
+    biases (1-D) are excluded."""
+
+    def __init__(self, model, lr, weight_decay=0.01, beta1=0.9, beta2=0.999, eps=1e-8):
+        super().__init__(model, lr, beta1, beta2, eps)
+        self.weight_decay = weight_decay
+
+    def step(self):
+        if self.weight_decay:
+            for params, _, name in self.model.params_and_grads():
+                if params[name].ndim >= 2:
+                    params[name] *= 1.0 - self.lr * self.weight_decay
+        super().step()

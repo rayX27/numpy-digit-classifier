@@ -1,3 +1,9 @@
+# numpy-digit-classifier
+
+![CI](https://github.com/rayX27/numpy-digit-classifier/actions/workflows/ci.yml/badge.svg?branch=v2)
+
+A from-scratch NumPy MLP on MNIST, benchmarked rigorously, stress-tested, and audited for its own flaws.
+
 # Neural Network from Scratch in NumPy
 
 A neural network that reads handwritten digits (0 to 9), written from scratch in NumPy, including backpropagation. No PyTorch, no TensorFlow.

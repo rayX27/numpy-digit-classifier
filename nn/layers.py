@@ -44,3 +44,18 @@ class ReLU(Layer):
 
     def backward(self, grad_out):
         return grad_out * self.mask
+
+
+class Normalize(Layer):
+    """Fixed input standardization. Has no parameters, so optimizers never touch it."""
+
+    def __init__(self, mean, std):
+        super().__init__()
+        self.mean = float(mean)  # Python floats keep float32 inputs in float32
+        self.std = float(std)
+
+    def forward(self, x, train=True):
+        return (x - self.mean) / self.std
+
+    def backward(self, grad_out):
+        return grad_out / self.std

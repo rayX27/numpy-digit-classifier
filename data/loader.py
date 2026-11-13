@@ -36,3 +36,8 @@ def load_test():
     """Official test set. Only final_eval.py may call this."""
     data = _load_verified()
     return data["x_test"].astype(np.float32) / 255.0, data["y_test"].astype(np.int64)
+
+
+def train_stats(x_train):
+    """Global mean and std of the training pixels (scalars, not per-pixel)."""
+    return float(x_train.mean()), float(x_train.std())

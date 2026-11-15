@@ -1,5 +1,8 @@
 """Mini-batch training loop, evaluation, and history."""
+"""Mini-batch training loop, evaluation, and history."""
 import time
+
+import numpy as np
 
 
 def batches(x, y, batch_size, rng):

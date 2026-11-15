@@ -14,5 +14,7 @@ Predictions written and pushed before running each experiment.
 | 784-128-10 (one hidden layer), validation accuracy after 30 epochs, best optimizer, 5 seeds | About 97.7% (range 97.4 to 98.0%), against about 98.0% for 784-256-128-10 | 2026-11-15 |
 | Which architecture is better, and by how much? | 784-256-128-10, by about 0.3 percentage points (range 0.0 to 0.6); about 75% confident it is better at all | 2026-11-15 |
 | Is that gap larger than the noise? | Larger than the seed std (about 0.1 points), so it should show in the means. Each accuracy's own bootstrap CI (about plus or minus 0.27 points) will probably still overlap, so the paired bootstrap difference is the test that decides | 2026-11-15 |
+| Final training accuracy minus validation accuracy, best optimizer, 30 epochs | 784-128-10 about 1.5 to 2.5 points; 784-256-128-10 about 1.8 to 3 points (the larger model memorizes slightly more) | 2026-11-15 |
+| Jump from softmax regression to 784-128-10 | About 5 to 6 points, much larger than the 128 to 256-128 gap | 2026-11-15 |
 
-Note: all predictions above were made by Claude at my request, before the experiments they cover were run. The learning rates were tuned only on 784-256-128-10, so 784-128-10 may be slightly disadvantaged.
+Note: all predictions above were made by Claude at my request, before the experiments they cover were run. The learning rates were tuned only on 784-256-128-10, so 784-128-10 may be slightly disadvantaged. Still to score after Session 7: the 97%-epochs, AdamW-vs-Adam, 98% and all architecture-comparison rows.

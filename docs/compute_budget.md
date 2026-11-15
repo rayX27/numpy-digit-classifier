@@ -1,7 +1,6 @@
 # Compute budget
 
-Hardware: Intel i5, 8 GB RAM, CPU only, Windows 10. Python 3.11.4, NumPy 2.4.6.
-Model: 784-256-128-10, plain SGD, 50,000 training images, one epoch, training only (no evaluation).
+Hardware: Intel Core i5-10310U @ 1.70 GHz, 8 GB RAM (7.6 GB usable), CPU only, Windows 10. Python 3.11.4, NumPy 2.4.6.Model: 784-256-128-10, plain SGD, 50,000 training images, one epoch, training only (no evaluation).
 Script: `experiments/profile_epoch.py` (rows also logged in `results/log.jsonl`). One epoch per setting, so timings are noisy (about plus or minus 30%).
 
 | threads | dtype | batch | sec/epoch |
